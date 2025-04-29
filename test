@@ -4,6 +4,11 @@ getgenv().BondFarmSetting = {
     AutoExecute = true -- Auto run when teleport to new server
 }
 
+--// Auto re-run sa bagong server
+if queue_on_teleport then
+    queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/aceurss/BypassALink/refs/heads/main/test"))()')
+end
+
 --// Services
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -31,7 +36,7 @@ blackFrame.Parent = screenGui
 --// Rainbow Label (top)
 local rainbowLabel = Instance.new("TextLabel")
 rainbowLabel.Size = UDim2.new(1, 0, 0.1, 0)
-rainbowLabel.Position = UDim2.new(0, 0, 0.02, 0) -- moved lower a bit
+rainbowLabel.Position = UDim2.new(0, 0, 0.02, 0)
 rainbowLabel.BackgroundTransparency = 1
 rainbowLabel.Text = "AUTOBONDSV2"
 rainbowLabel.Font = Enum.Font.SpecialElite
@@ -53,7 +58,7 @@ end)
 --// Title Label
 local titleLabel = Instance.new("TextLabel")
 titleLabel.Size = UDim2.new(1, 0, 0.1, 0)
-titleLabel.Position = UDim2.new(0, 0, 0.17, 0) -- moved even lower
+titleLabel.Position = UDim2.new(0, 0, 0.17, 0)
 titleLabel.BackgroundTransparency = 1
 titleLabel.Text = "MADE BY ACXTHESCRIPTER"
 titleLabel.Font = Enum.Font.SpecialElite
