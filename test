@@ -1,18 +1,15 @@
 --// Settings
 getgenv().BondFarmSetting = {
     tweenDuration = 14, -- Teleport speed, minimum 13
-    AutoExecute = true -- Auto run when teleport to new server
+    AutoExecute = true, -- Auto run when teleport to new server
+    CheckMissedBonds = false -- Optional setting to enable bond checking
 }
-
---// Auto re-run sa bagong server
-if queue_on_teleport then
-    queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/aceurss/BypassALink/refs/heads/main/test"))()')
-end
 
 --// Services
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local StarterGui = game:GetService("StarterGui")
+local TeleportService = game:GetService("TeleportService")
 local player = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
 
@@ -112,7 +109,7 @@ end)
 local function loadBondFarmScript()
     task.spawn(function()
         task.wait(3)
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/DonjoScripts/Public-Scripts/refs/heads/Slap-Battles/TheFastestBondStealer.lua'))()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/aceurss/BypassALink/main/test'))()
         print("[BondFarm] Script loaded!")
     end)
 end
@@ -154,3 +151,14 @@ player.CharacterAdded:Connect(function(char)
     loadBondFarmScript()
     print("[Backup] Reload script on respawn")
 end)
+
+--// Auto re-execute when teleporting to new server
+if getgenv().BondFarmSetting.AutoExecute then
+    queue_on_teleport = queue_on_teleport or queue_on_teleport or syn and syn.queue_on_teleport
+    if queue_on_teleport then
+        local source = game:HttpGet("https://raw.githubusercontent.com/aceurss/BypassALink/main/test")
+        queue_on_teleport(source)
+    else
+        warn("queue_on_teleport is not supported in your executor.")
+    end
+end
